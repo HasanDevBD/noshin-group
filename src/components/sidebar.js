@@ -25,6 +25,7 @@ const Sidebar = () => {
             <ul className="list flex md:flex-col md:gap-2 ">
               {menus.map((menu, inx) => (
                 <ItemList
+                  key={menu.id}
                   Url={menu.path}
                   Name={menu.name}
                   Icon={menu.icon}

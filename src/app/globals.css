@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* "Roboto", "Arial", sans-serif */
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+  height: 100vh;
+}
+body.dark-mode {
+  @apply bg-gray-900 text-white;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  justify-content: space-between;
+  /* height: 70px; */
+
+  justify-items: center;
+  width: 100%;
+  background-color: #f9fcff;
+  background-image: linear-gradient(147deg, #f9fcff 0%, #dee4ea 74%);
+  color: rgb(22, 22, 22);
+}
+
+body.dark-mode .navbar {
+  background-color: #2d3436;
+  background-image: linear-gradient(90deg, #1c1f20 0%, #000000 74%);
+  color: #fff;
+}
+
+.sidebar {
+  background-color: #f9fcff;
+  background-image: linear-gradient(147deg, #f9fcff 0%, #dee4ea 74%);
+  color: rgb(22, 22, 22);
+  padding: 15px;
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  left: 0;
+  transition: all 0.3s ease;
+}
+#guide-inner-content::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+#guide-inner-content::-webkit-scrollbar-track {
+  background: #69778a;
+}
+
+#guide-inner-content::-webkit-scrollbar-thumb {
+  background: #aaa;
+}
+/* styles.css */
+.list_items {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  border-radius: 10px;
+  font-weight: bold;
+  font-family: "Roboto", "Noto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  min-height: var(--paper-item-min-height, 48px);
+}
+
+body.dark-mode .sidebar {
+  background-color: #2d3436;
+  background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
+  color: #fff;
+}
+.main-content {
+  height: 100%;
+  /* width: 100vh; */
+  background-color: #f9fcff;
+  background-image: linear-gradient(147deg, #f9fcff 0%, #dee4ea 74%);
+  color: rgb(22, 22, 22);
+  /* transition: margin 0.3s ease; */
+}
+body.dark-mode .main-content {
+  background-color: #2d3436;
+  background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
+  color: #fff;
+}
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: auto; /* Ensures the sidebar is not fixed to the top */
+  }
+
+  .main-content {
+    margin-left: 0;
+    margin-bottom: 60px; /* same as sidebar height */
+  }
+}
+
+.ltmode {
+  background-color: #f9fcff;
+  color: #2d3436;
+  background-image: linear-gradient(147deg, #f9fcff 0%, #dee4ea 74%);
+}
+.drmode {
+  background-color: #2d3436;
+  background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
+  color: #f8e9e9;
+}
+.exta {
+  background: #1e293b;
+  color: #69778a;
+}

@@ -136,3 +136,10 @@ body.dark-mode .main-content {
   background: #1e293b;
   color: #69778a;
 }
+
+.fj {
+  color: #717171 #3d3d3d #e6e6e6 #cfcfcf;
+}
+.extraCls {
+  background-color: #00ffff;
+}

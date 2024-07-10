@@ -16,26 +16,24 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${inter.className} scroll-smooth focus:scroll-auto`}
     >
-      <body className="bg-gray-300 h-screen w-screen flex flex-col">
-        <div className="h-14 text-white flex items-center relative">
+      <body className="bg-gray-300 min-h-screen w-full flex flex-col">
+        <div className="h-14 text-white flex items-center">
           <Navbar />
         </div>
-        <div className="flex-1">
-          <div className="flex h-full w-full md:flex-row flex-col overflow-hidden">
-            <div
-              id="guide-inner-content"
-              className={`fixed w-full h-12 bottom-0 md:w-20 md:left-0 md:static 
-                md:h-full  lg:w-60 lg:h-full lg:hover:overflow-y-auto 
-                transition-all duration-300 bg-lt-gradient bg-ltBackground text-ltColor dark:bg-drBackground
-                  dark:bg-dr-gradient Background dark:text-[#f8e9e9] `}
-            >
-              <Sidebar />
-            </div>
-
-            <div className="flex-1 bg-gray-300  ">{children}</div>
+        <div className="flex-1 md:pt-2 flex flex-col md:flex-row overflow-hidden">
+          <div
+            id="guide-inner-content"
+            className={`fixed bottom-0 w-full h-12 md:static md:w-20 lg:w-60 md:h-full lg:h-full lg:hover:overflow-y-auto transition-all duration-300 bg-lt-gradient bg-ltBackground text-ltColor dark:bg-drBackground dark:bg-dr-gradient dark:text-[#f8e9e9]`}
+          >
+            <Sidebar />
           </div>
+
+          <div className="flex-1 bg-gray-300">{children}</div>
         </div>
       </body>
     </html>
   );
 }
+/* 
+
+*/

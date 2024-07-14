@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         <div className="h-14 text-white flex items-center">
           <Navbar />
         </div>
-        <div className="flex-1 md:pt-2 flex flex-col md:flex-row overflow-hidden">
+        <div className="flex-1 md:pt-3 flex flex-col md:flex-row overflow-hidden">
           <div
             id="guide-inner-content"
             className={`fixed bottom-0 w-full h-12 md:static md:w-20 lg:w-60 md:h-full lg:h-full lg:hover:overflow-y-auto transition-all duration-300 bg-lt-gradient bg-ltBackground text-ltColor dark:bg-drBackground dark:bg-dr-gradient dark:text-[#f8e9e9]`}

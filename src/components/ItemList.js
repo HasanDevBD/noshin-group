@@ -14,7 +14,7 @@ export default function ItemList({
       <li className={`flex items-center `}>
         <Link
           href={Url}
-          className={`flex md:bg-[#00ffff] w-full flex-col lg:flex-row md:mx-2  md:w-[calc(100%-12px)] items-center md:rounded-lg antialiased leading-6 md:min-h-[40px]`}
+          className={`flex hover:md:bg-[#cfcfcf] dark:hover:md:bg-[#3d3d3d] w-full flex-col lg:flex-row md:mx-2  md:w-[calc(100%-12px)] items-center md:rounded-lg antialiased leading-6 md:min-h-[40px]`}
           tabIndex={Index}
           title={Name}
         >

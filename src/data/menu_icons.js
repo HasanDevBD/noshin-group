@@ -5,69 +5,107 @@ import { IoIosHelpCircleOutline, IoChatbubblesOutline } from "react-icons/io";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
-import { FaCartArrowDown, FaHeart, FaRegUserCircle } from "react-icons/fa";
+import {
+  FaCartArrowDown,
+  FaHeart,
+  FaRegUserCircle,
+  FaHotel,
+  FaChurch,
+  FaCalendarAlt,
+  FaHome,
+  FaHistory,
+  FaList,
+  FaVideo,
+  FaClock,
+  FaThumbsUp,
+} from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { IoMdHeartEmpty } from "react-icons/io";
 
-const menuIcons = {
-  mobaile: [
-    { name: "Home", icon: MdHome, id: "MdHome1", path: "/" },
-    {
-      name: "Your Orders",
-      icon: FaCartArrowDown,
-      id: "FaCartArrowDown2",
-      path: "/orders",
-    },
-    {
-      name: "User",
-      icon: FaRegUserCircle,
-      id: "FaRegUserCircle3",
-      path: "/user",
-    },
-    { name: "Cart", icon: BsCart, id: "BsCart4", path: "/cart" },
-    { name: "Menu", icon: IoMenu, id: "IoMenu5", path: "/Category" },
-  ],
-  desktop: [
-    { name: "Home", icon: MdHome, id: "MdHome1", path: "/" },
-    {
-      name: "Your Orders",
-      icon: FaCartArrowDown,
-      id: "FaCartArrowDown2",
-      path: "/orders",
-    },
-    {
-      name: "Support",
-      icon: IoIosHelpCircleOutline,
-      id: "IoIosHelpCircleOutline2",
-      path: "/contact",
-    },
-    { name: "Cart", icon: BsCart, id: "BsCart4", path: "/cart" },
-    {
-      name: "Category",
-      icon: BiCategory,
-      id: "BiCategory5",
-      path: "/category",
-    },
-    { name: "Menu", icon: IoMenu, id: "IoMenu5", path: "/menu" },
-  ],
-};
-
-const mobileMenuItems = [
-  { name: "Home", icon: GoHome, id: "GoHome1", path: "/" },
-  { name: "Save", icon: IoMdHeartEmpty, id: "IoMdHeartEmpty2", path: "/save" },
+const menusList = [
   {
-    name: "Support",
-    icon: MdOutlineContactSupport,
-    id: "IoChatbubblesOutline3",
-    path: "/support",
+    items: [
+      { name: "Home", icon: GoHome, id: "GoHome1", path: "/" },
+      {
+        name: "Save",
+        icon: IoMdHeartEmpty,
+        id: "IoMdHeartEmpty2",
+        path: "/save",
+      },
+      {
+        name: "Support",
+        icon: MdOutlineContactSupport,
+        id: "IoChatbubblesOutline3",
+        path: "/support",
+      },
+
+      { name: "Cart List", icon: BsCart, id: "BsCart4", path: "/cart" },
+      {
+        name: "Yor Orders",
+        icon: LiaCartArrowDownSolid,
+        id: "LiaCartArrowDownSolid5",
+        path: "/orders",
+      },
+    ],
   },
-
-  { name: "Cart List", icon: BsCart, id: "BsCart4", path: "/cart" },
   {
-    name: "Yor Orders",
-    icon: LiaCartArrowDownSolid,
-    id: "LiaCartArrowDownSolid5",
-    path: "/orders",
+    category: [
+      {
+        title: "Subsiction",
+        items: [
+          { name: "Home", url: "/", icon: FaHome, id: "indez1" },
+          { name: "Hotel", url: "/hotel", icon: FaHotel, id: "FaHotel2" },
+          {
+            name: "Wedding Venue",
+            url: "/wedding-venue",
+            icon: FaChurch,
+            id: "FaChurch3",
+          },
+          {
+            name: "Wedding Event",
+            url: "/wedding-event",
+            icon: FaCalendarAlt,
+            id: "FaCalendarAlt4",
+          },
+        ],
+      },
+      {
+        title: "You >",
+        items: [
+          {
+            name: "Your channel",
+            url: "/your-channel",
+            icon: FaVideo,
+            id: "FaVideo5",
+          },
+          {
+            name: "History",
+            url: "/history",
+            icon: FaHistory,
+            id: "FaHistory6",
+          },
+          { name: "Playlists", url: "/playlists", icon: FaList, id: "FaList7" },
+          {
+            name: "Your videos",
+            url: "/your-videos",
+            icon: FaVideo,
+            id: "FaVideo8",
+          },
+          {
+            name: "Watch later",
+            url: "/watch-later",
+            icon: FaClock,
+            id: "FaClock9",
+          },
+          {
+            name: "Liked videos",
+            url: "/liked-videos",
+            icon: FaThumbsUp,
+            id: "FaThumbsUp10",
+          },
+        ],
+      },
+    ],
   },
 ];
-export const getMobileMenuItems = () => mobileMenuItems;
+export const menus = () => menusList;

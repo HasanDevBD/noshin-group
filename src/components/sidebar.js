@@ -1,23 +1,16 @@
 "use client";
 
-import Link from "next/link";
-
-import { FaHeart } from "react-icons/fa";
-import { GoHome } from "react-icons/go";
-import { BsCart } from "react-icons/bs";
-import { RiContactsBook3Line } from "react-icons/ri";
-import { IoMenu } from "react-icons/io5";
-import { getMobileMenuItems } from "@/data/menu_icons";
+import { menus } from "@/data/menu_icons";
 import ItemList from "./ItemList";
 
-const menus = getMobileMenuItems();
 const Sidebar = () => {
+  const [{ items }, { category }] = menus();
   return (
     <aside className=" border-b-white relative top-1 flex-shrink-0">
       <nav className="navigation absolute w-full to ">
         <ul className="list flex justify-around md:flex-col md:gap-2">
           {" "}
-          {menus.map((menu, index) => (
+          {items.map((menu, index) => (
             <ItemList
               key={menu.id}
               Url={menu.path}
@@ -26,6 +19,29 @@ const Sidebar = () => {
               Index={index}
             />
           ))}
+          <hr />
+          <div className=" hidden md:block overflow-hidden ">
+            {category.map((value, index) => (
+              <>
+                {value.title && (
+                  <h2 className="text-[#3d3d3d] dark:text-[#e6e6e6]  md:min-h-[40px] md:w-[calc(100%-12px)]  md:p-3">
+                    {value.title}
+                  </h2>
+                )}
+                {value.items.map((item, inx) => (
+                  <ItemList
+                    key={item.id}
+                    Url={item.path}
+                    Name={item.name}
+                    Icon={item.icon}
+                    Index={inx}
+                  />
+                ))}
+
+                <hr className=" mx-3 mt-4  " />
+              </>
+            ))}
+          </div>
         </ul>
       </nav>
     </aside>

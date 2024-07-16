@@ -1,13 +1,20 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
+import SwiperImage from "./swiperImage";
 
 const SwipeableCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
   const timeoutRef = useRef(null);
   const items = ["Image+1", "Image+2", "Image+3", "Image+4", "Image+5"]; // Example items
-
+  const imgs = [
+    "https://via.placeholder.com/800x400?text=Image+1",
+    "https://via.placeholder.com/800x400?text=Image+2",
+    "https://via.placeholder.com/800x400?text=Image+3",
+    "https://via.placeholder.com/800x400?text=Image+4",
+    "https://via.placeholder.com/800x400?text=Image+5",
+  ];
   const resetTimeout = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -49,15 +56,8 @@ const SwipeableCarousel = () => {
   return (
     <div className="relative w-full h-64 overflow-hidden">
       <div {...handlers} className="relative w-full h-full">
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 flex items-center justify-center h-44 bg-gray-200 transition-opacity duration-300 ${
-              index === currentIndex ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            {item}
-          </div>
+        {imgs.map((img, index) => (
+          <SwiperImage imgSrc={img} index={index} currentIndex={currentIndex} />
         ))}
       </div>
     </div>

@@ -24,19 +24,19 @@ const SwipeableCarousel = () => {
   useEffect(() => {
     resetTimeout();
     timeoutRef.current = setTimeout(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % imgs.length);
     }, 4000); // Increased duration to make the transition more noticeable
 
     return () => {
       resetTimeout();
     };
-  }, [currentIndex]);
+  }, [currentIndex, imgs.length]);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
       setTransitioning(true);
       setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % imgs.length);
         setTransitioning(false);
       }, 300);
     },
@@ -44,7 +44,7 @@ const SwipeableCarousel = () => {
       setTransitioning(true);
       setTimeout(() => {
         setCurrentIndex(
-          (prevIndex) => (prevIndex - 1 + items.length) % items.length
+          (prevIndex) => (prevIndex - 1 + imgs.length) % imgs.length
         );
         setTransitioning(false);
       }, 300);
@@ -57,7 +57,12 @@ const SwipeableCarousel = () => {
     <div className="relative w-full h-64 overflow-hidden">
       <div {...handlers} className="relative w-full h-full">
         {imgs.map((img, index) => (
-          <SwiperImage imgSrc={img} index={index} currentIndex={currentIndex} />
+          <SwiperImage
+            key={img + index}
+            imgSrc={img}
+            index={index}
+            currentIndex={currentIndex}
+          />
         ))}
       </div>
     </div>

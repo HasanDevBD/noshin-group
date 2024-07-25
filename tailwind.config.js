@@ -29,6 +29,7 @@ module.exports = {
       },
       backgroundImage: {
         darkLogo: "url('/assets/img/logo.png')",
+        sldBg: "url('/assets/bg_img/Weed.jpg')",
         lightLogo: "url('/assets/img/logo_light.png')",
         "lt-gradient": "linear-gradient(147deg, #f9fcff 0%, #dee4ea 74%)",
         "dr-gradient": "linear-gradient(315deg, #2d3436 0%, #000000 74%)",

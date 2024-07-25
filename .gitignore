@@ -30,7 +30,9 @@ yarn-error.log*
 
 # vercel
 .vercel
-
+#vscode configar folder
+.vscode
+.settings.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts

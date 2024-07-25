@@ -2,18 +2,26 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
 import SwiperImage from "./swiperImage";
+import Image from "next/image";
+import LargeRightBox from "./largeRightBox";
+import Link from "next/link";
 
 const SwipeableCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
   const timeoutRef = useRef(null);
-  const items = ["Image+1", "Image+2", "Image+3", "Image+4", "Image+5"]; // Example items
+
   const imgs = [
     "https://via.placeholder.com/800x400?text=Image+1",
     "https://via.placeholder.com/800x400?text=Image+2",
     "https://via.placeholder.com/800x400?text=Image+3",
     "https://via.placeholder.com/800x400?text=Image+4",
     "https://via.placeholder.com/800x400?text=Image+5",
+    "/assets/swiper-slider/1.jpg",
+    "/assets/swiper-slider/2.jpg",
+    "/assets/swiper-slider/3.jpg",
+    "/assets/swiper-slider/4.jpg",
+    "/assets/swiper-slider/5.jpg",
   ];
   const resetTimeout = () => {
     if (timeoutRef.current) {
@@ -54,18 +62,32 @@ const SwipeableCarousel = () => {
   });
 
   return (
-    <div className="relative w-full h-64 overflow-hidden">
-      <div {...handlers} className="relative w-full h-full">
-        {imgs.map((img, index) => (
-          <SwiperImage
-            key={img + index}
-            imgSrc={img}
-            index={index}
-            currentIndex={currentIndex}
-          />
-        ))}
-      </div>
-    </div>
+    <article className="bg-sldBg bg-cover bg-center bg-no-repeat relative w-full box-border h-[350px] md:h-[50vh] lg:h-[60vh]">
+      <header className="h-full  grid grid-cols-1 grid-rows-3 md:grid-cols-3 gap-2 p-2">
+        <section
+          {...handlers}
+          className="bg-blue-500 relative row-span-3 md:col-span-2 rounded-lg flex overflow-hidden"
+        >
+          {imgs.map((img, index) => (
+            <picture key={img + index}>
+              <Link href="/about" className="flex absolute">
+                <Image
+                  width={500}
+                  height={350}
+                  src={img}
+                  alt="banner"
+                  className={`object-cover transition-opacity duration-900 ${
+                    index === currentIndex ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              </Link>
+            </picture>
+          ))}
+        </section>
+        {/* Larger box on the right */}
+        <LargeRightBox />
+      </header>
+    </article>
   );
 };
 

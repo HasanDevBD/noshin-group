@@ -1,12 +1,11 @@
+import ReduxImplement from "@/components/ReduxImplement";
 import SwipeableCarousel from "@/components/swiper-slider/app";
-import Image from "next/image";
-import banner from "/public/assets/swiper-slider/5.jpg";
-import Link from "next/link";
-import LargeRightBox from "@/components/swiper-slider/largeRightBox";
+
 export default function Home() {
   return (
-    <div className="main-content ">
+    <div className="main-content overflow-hidden absolute">
       <SwipeableCarousel />
+      {/* <ReduxImplement /> */}
     </div>
   );
 }

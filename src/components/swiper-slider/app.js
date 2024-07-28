@@ -5,6 +5,7 @@ import SwiperImage from "./swiperImage";
 import Image from "next/image";
 import LargeRightBox from "./largeRightBox";
 import Link from "next/link";
+import { Item } from "./item";
 
 const SwipeableCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -70,13 +71,14 @@ const SwipeableCarousel = () => {
         >
           {imgs.map((img, index) => (
             <picture key={img + index}>
-              <Link href="/about" className="flex absolute">
+              <Link href="/about" className="flex ">
                 <Image
-                  width={500}
-                  height={350}
                   src={img}
-                  alt="banner"
-                  className={`object-cover transition-opacity duration-900 ${
+                  alt="profile"
+                  objectFit="cover"
+                  fill
+                  // className="w-full h-full top-0 left-0 object-cover rounded-2xl"
+                  className={`w-full h-full top-0 left-0 object-cover rounded-2xltransition-opacity duration-900 ${
                     index === currentIndex ? "opacity-100" : "opacity-0"
                   }`}
                 />
@@ -85,7 +87,15 @@ const SwipeableCarousel = () => {
           ))}
         </section>
         {/* Larger box on the right */}
-        <LargeRightBox />
+        <LargeRightBox>
+          <Item>1</Item>
+          <Item>2</Item>
+          <Item>3</Item>
+          <Item>4</Item>
+          <Item>5</Item>
+          <Item>6</Item>
+          <Item>7</Item>
+        </LargeRightBox>
       </header>
     </article>
   );

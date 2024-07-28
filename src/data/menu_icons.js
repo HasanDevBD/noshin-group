@@ -6,13 +6,20 @@ import { MdOutlineContactSupport } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
 import {
+  FaShoppingCart,
+  FaListAlt,
+  FaHome,
+  FaLifeRing,
+  FaSave,
+  FaThLarge,
+} from "react-icons/fa";
+import {
   FaCartArrowDown,
   FaHeart,
   FaRegUserCircle,
   FaHotel,
   FaChurch,
   FaCalendarAlt,
-  FaHome,
   FaHistory,
   FaList,
   FaVideo,
@@ -25,24 +32,24 @@ import { IoMdHeartEmpty } from "react-icons/io";
 const menusList = [
   {
     items: [
-      { name: "Home", icon: GoHome, id: "GoHome1", path: "/" },
+      { name: "Home", icon: FaHome, id: "GoHome1", path: "/" },
       {
         name: "Save",
-        icon: IoMdHeartEmpty,
+        icon: FaSave,
         id: "IoMdHeartEmpty2",
         path: "/save",
       },
       {
         name: "Support",
-        icon: MdOutlineContactSupport,
+        icon: FaLifeRing,
         id: "IoChatbubblesOutline3",
         path: "/support",
       },
 
-      { name: "Cart List", icon: BsCart, id: "BsCart4", path: "/cart" },
+      { name: "Cart List", icon: FaShoppingCart, id: "BsCart4", path: "/cart" },
       {
         name: "Yor Orders",
-        icon: LiaCartArrowDownSolid,
+        icon: FaListAlt,
         id: "LiaCartArrowDownSolid5",
         path: "/orders",
       },
@@ -53,7 +60,7 @@ const menusList = [
       {
         title: "Subsiction",
         items: [
-          { name: "Home", url: "/", icon: FaHome, id: "indez1" },
+          { name: "category", url: "/category", icon: FaThLarge, id: "indez1" },
           { name: "Hotel", url: "/hotel", icon: FaHotel, id: "FaHotel2" },
           {
             name: "Wedding Venue",

@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
+import StoreProvider from "./StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,20 +17,25 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${inter.className} scroll-smooth focus:scroll-auto`}
     >
-      <body className="bg-gray-300 min-h-screen w-full flex flex-col">
-        <div className="h-14 text-white flex items-center">
-          <Navbar />
-        </div>
-        <div className="flex-1 md:pt-3 flex flex-col md:flex-row overflow-hidden">
-          <div
-            id="guide-inner-content"
-            className={`fixed bottom-0 w-full h-12 md:static md:w-20 lg:w-60 md:h-full lg:h-full lg:hover:overflow-y-auto transition-all duration-300 bg-lt-gradient bg-ltBackground text-ltColor dark:bg-drBackground dark:bg-dr-gradient dark:text-[#f8e9e9]`}
-          >
-            <Sidebar />
+      <body className="bg-gray-300 ">
+        <StoreProvider>
+          <div className="min-h-screen w-full flex flex-col gap-2">
+            <header className="h-14 text-white flex items-center relative z-10">
+              <Navbar />
+            </header>
+            <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
+              <aside
+                id="guide-inner-content"
+                className="fixed bottom-0 w-full h-12 md:relative md:h-full md:w-20 lg:w-60 lg:h-full transition-all duration-300 bg-lt-gradient bg-ltBackground text-ltColor dark:bg-drBackground dark:bg-dr-gradient dark:text-[#f8e9e9] z-20"
+              >
+                <Sidebar />
+              </aside>
+              <main className="flex-1 bg-gray-300 overflow-hidden relative">
+                {children}
+              </main>
+            </div>
           </div>
-
-          <div className="flex-1 bg-gray-300">{children}</div>
-        </div>
+        </StoreProvider>
       </body>
     </html>
   );

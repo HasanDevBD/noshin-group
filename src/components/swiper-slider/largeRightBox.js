@@ -1,39 +1,20 @@
 import React from "react";
 
-export default function LargeRightBox() {
+export default function LargeRightBox({ children }) {
+  const childrenArray = React.Children.toArray(children);
+  const isOdd = childrenArray.length % 2 !== 0;
+
   return (
-    <div className="sliders h-[140px] w-full md:h-full row-span-3 col-span-1 overflow-x-auto md:overflow-y-auto flex md:grid grid-cols-2 md:grid-cols-2 gap-1 justify-evenly  ">
-      <div className="bg-green-500 min-h-32 min-w-32  rounded-lg z-30 text-lg  md:min-h-32 md:min-w-24 ">
-        1
-      </div>
-      <div className="bg-green-500 min-h-32 min-w-32 rounded-lg z-30 text-lg  md:min-h-32 md:min-w-24  ">
-        2
-      </div>
-      <div className="bg-green-500 min-h-32 min-w-32 rounded-lg z-30 text-lg  md:min-h-32 md:min-w-24  ">
-        3
-      </div>
-      <div className="bg-green-500 min-h-32 min-w-32 rounded-lg z-30 text-lg  md:min-h-32 md:min-w-24  ">
-        4
-      </div>
-      <div className="bg-green-500 min-h-32 min-w-32 rounded-lg z-30 text-lg  md:min-h-32 md:min-w-24  ">
-        5
-      </div>
-      <div className="bg-green-500 min-h-32 min-w-32 rounded-lg z-30 text-lg  md:min-h-32 md:min-w-24  ">
-        6
-      </div>
-      <div className="bg-green-500 min-h-32 min-w-32 rounded-lg z-30 text-lg  md:min-h-32 md:min-w-24  ">
-        7
-      </div>
-      <div className="bg-green-500 min-h-32 min-w-32 rounded-lg z-30 text-lg  md:min-h-32 md:min-w-24  ">
-        8
-      </div>
-      <div className="bg-green-500 min-h-32 min-w-32 rounded-lg z-30 text-lg  md:min-h-32 md:min-w-24  ">
-        9
-      </div>
-      <div className="bg-green-500 min-h-32 min-w-32 rounded-lg z-30 text-lg  md:min-h-32 md:min-w-24  ">
-        10
-      </div>
+    <div className="sliders h-[140px] w-full md:h-full row-span-3 col-span-1 overflow-x-auto md:overflow-y-auto flex md:grid grid-cols-2 md:grid-cols-2 gap-1 justify-evenly">
+      {React.Children.map(childrenArray, (child, index) =>
+        React.cloneElement(child, {
+          className: `${child.props.className} ${
+            isOdd && index === childrenArray.length - 1
+              ? "w-full md:col-span-2"
+              : ""
+          }`,
+        })
+      )}
     </div>
   );
 }
-//repeat(auto-fit, minmax(200px, 1fr))

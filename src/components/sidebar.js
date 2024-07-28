@@ -7,8 +7,8 @@ import React from "react";
 const Sidebar = () => {
   const [{ items }, { category }] = menus();
   return (
-    <aside className="border-b-white relative top-1 flex-shrink-0">
-      <nav className="navigation absolute w-full">
+    <aside className="border-b-white  top-1 flex-shrink-0">
+      <nav className="navigation  w-full">
         <ul className="list flex justify-around md:flex-col md:gap-2">
           {items.map((menu) => (
             <ItemList

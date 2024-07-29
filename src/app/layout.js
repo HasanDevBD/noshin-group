@@ -1,8 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
-import Sidebar from "@/components/sidebar";
+import Sidebar from "@/components/side-bar/sidebar";
 import StoreProvider from "./StoreProvider";
+import AppSideBar from "@/components/side-bar/app";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +25,7 @@ export default function RootLayout({ children }) {
               <Navbar />
             </header>
             <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-              <aside
-                id="guide-inner-content"
-                className="fixed bottom-0 w-full h-12 md:relative md:h-full md:w-20 lg:w-60 lg:h-full transition-all duration-300 bg-lt-gradient bg-ltBackground text-ltColor dark:bg-drBackground dark:bg-dr-gradient dark:text-[#f8e9e9] z-20"
-              >
-                <Sidebar />
-              </aside>
+              <AppSideBar />
               <main className="flex-1 bg-gray-300 overflow-hidden relative">
                 {children}
               </main>

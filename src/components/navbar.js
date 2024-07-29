@@ -5,8 +5,8 @@ import SearchBar from "./searchBar";
 
 const Navbar = () => {
   return (
-    <nav className="navbar shadow-md py-4 flex items-center absolute">
-      <section className=" flex text-xl font-bold items-center w-48 justify-evenly">
+    <nav className="navbar shadow-md py-4 flex items-center justify-evenly absolute">
+      <section className=" flex   items-center gap-3 md:w-52 pl-4  justify-evenly">
         <LogoSection />
       </section>
       <SearchBar />

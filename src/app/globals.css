@@ -42,21 +42,21 @@ body.dark-mode .navbar {
   color: #fff;
 }
 
-#guide-inner-content::-webkit-scrollbar {
+.inner-sidebar::-webkit-scrollbar {
   width: 0.6vw;
   height: 20px;
 }
 
-#guide-inner-content::-webkit-scrollbar-track {
+.inner-sidebar::-webkit-scrollbar-track {
   background: #69778a;
 }
 
-#guide-inner-content::-webkit-scrollbar-thumb {
+.inner-sidebar::-webkit-scrollbar-thumb {
   background: #aaa;
 }
 
 /* Style the scrollbar buttons */
-#guide-inner-content::-webkit-scrollbar-button {
+.inner-sidebar::-webkit-scrollbar-button {
   display: block; /* Ensure buttons are visible */
   background-color: #a5aab5;
   border-radius: 5px;

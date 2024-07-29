@@ -48,7 +48,7 @@ const menusList = [
 
       { name: "Cart List", icon: FaShoppingCart, id: "BsCart4", path: "/cart" },
       {
-        name: "Yor Orders",
+        name: "Orders",
         icon: FaListAlt,
         id: "LiaCartArrowDownSolid5",
         path: "/orders",

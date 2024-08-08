@@ -17,8 +17,7 @@ export default function Home() {
       <SwipeableCarousel duration={duration} />
       <>
         <div
-          className={`grid mt-1 gap-2 h-auto md:grid-cols-2 lg:grid-cols-3 bg-[#f2eeee] "grid-rows-1 overflow-hidden"
-          }`}
+          className={`grid mt-1 gap-2 h-auto md:grid-cols-2 lg:grid-cols-3 bg-[#f2eeee] dark:bg-gray-700`}
         >
           <HomeVenue />
           <HomeVenue />

@@ -13,7 +13,7 @@ export default function AppSideBar() {
           isToggled ? "lg:w-24" : "lg:w-60 "
         }  lg:h-full transition-all duration-300 bg-lt-gradient bg-ltBackground text-ltColor dark:bg-drBackground dark:bg-dr-gradient dark:text-[#f8e9e9] z-20`}
       >
-        <Sidebar isToggled={isToggled} />
+        <Sidebar />
       </aside>
     </>
   );

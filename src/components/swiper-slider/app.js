@@ -1,29 +1,19 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
-import SwiperImage from "./swiperImage";
 import Image from "next/image";
-import LargeRightBox from "./largeRightBox";
 import Link from "next/link";
+import { swiperImages } from "@/data/swiperImage";
+import LargeRightBox from "./largeRightBox";
 import { Item } from "./item";
+import ProgressBar from "../progressBar";
+import getImages from "@/app/utils/getImages";
 
-const SwipeableCarousel = () => {
+const SwipeableCarousel = ({ duration }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
   const timeoutRef = useRef(null);
 
-  const imgs = [
-    "https://via.placeholder.com/800x400?text=Image+1",
-    "https://via.placeholder.com/800x400?text=Image+2",
-    "https://via.placeholder.com/800x400?text=Image+3",
-    "https://via.placeholder.com/800x400?text=Image+4",
-    "https://via.placeholder.com/800x400?text=Image+5",
-    "/assets/swiper-slider/1.jpg",
-    "/assets/swiper-slider/2.jpg",
-    "/assets/swiper-slider/3.jpg",
-    "/assets/swiper-slider/4.jpg",
-    "/assets/swiper-slider/5.jpg",
-  ];
   const resetTimeout = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -33,68 +23,109 @@ const SwipeableCarousel = () => {
   useEffect(() => {
     resetTimeout();
     timeoutRef.current = setTimeout(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % imgs.length);
-    }, 4000); // Increased duration to make the transition more noticeable
+      setTransitioning(true);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % swiperImages.length);
+    }, duration); // Duration between slides
 
     return () => {
       resetTimeout();
     };
-  }, [currentIndex, imgs.length]);
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (transitioning) {
+      const transitionTimeout = setTimeout(() => {
+        setTransitioning(false);
+      }, 300); // Match this with the duration of your CSS transition
+      return () => clearTimeout(transitionTimeout);
+    }
+  }, [transitioning]);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
       setTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % imgs.length);
-        setTransitioning(false);
-      }, 300);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % swiperImages.length);
     },
     onSwipedRight: () => {
       setTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex(
-          (prevIndex) => (prevIndex - 1 + imgs.length) % imgs.length
-        );
-        setTransitioning(false);
-      }, 300);
+      setCurrentIndex(
+        (prevIndex) =>
+          (prevIndex - 1 + swiperImages.length) % swiperImages.length
+      );
     },
     preventDefaultTouchmoveEvent: true,
     trackMouse: true,
   });
 
+  const handleNext = () => {
+    setTransitioning(true);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % swiperImages.length);
+  };
+
+  const handlePrev = () => {
+    setTransitioning(true);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + swiperImages.length) % swiperImages.length
+    );
+  };
+
   return (
-    <article className="bg-sldBg bg-cover bg-center bg-no-repeat relative w-full box-border h-[350px] md:h-[50vh] lg:h-[60vh]">
-      <header className="h-full  grid grid-cols-1 grid-rows-3 md:grid-cols-3 gap-2 p-2">
+    // bg-sldBg bg-cover bg-center bg-no-repeat
+    <article className="relative bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 w-full  box-border h-[60vh] md:h-[50vh] lg:h-[60vh]">
+      {/* <ProgressBar duration={duration} currentIndex={currentIndex} /> */}
+      <header className="relative py-1 grid grid-cols-1 grid-rows-3 md:grid-cols-3 gap-2 px-2 h-full">
         <section
           {...handlers}
-          className="bg-blue-500 relative row-span-3 md:col-span-2 rounded-lg flex overflow-hidden"
+          className="h-full w-full relative row-span-3 md:col-span-2 rounded-lg overflow-hidden"
         >
-          {imgs.map((img, index) => (
-            <picture key={img + index}>
-              <Link href="/about" className="flex ">
+          {swiperImages.map((img, index) => (
+            <picture key={img + index} className="absolute h-full w-full">
+              <Link href="/about" className="flex relative h-full w-full">
                 <Image
                   src={img}
-                  alt="profile"
-                  objectFit="cover"
+                  alt="Banner swiper slider"
                   fill
-                  // className="w-full h-full top-0 left-0 object-cover rounded-2xl"
-                  className={`w-full h-full top-0 left-0 object-cover rounded-2xltransition-opacity duration-900 ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  style={{ objectFit: "cover" }}
+                  className={`w-full h-full top-0 left-0 object-cover rounded-2xl transition-opacity duration-1000 ${
+                    index === currentIndex
+                      ? transitioning
+                        ? "opacity-100"
+                        : "opacity-100"
+                      : "opacity-0"
                   }`}
                 />
               </Link>
+              <>
+                <button
+                  onClick={handlePrev}
+                  className="hidden md:block absolute top-1/2 left-4 transform -translate-y-1/2 p-3 bg-gray-800 text-white rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 ease-in-out hover:scale-110"
+                >
+                  &lt;
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="hidden  md:block absolute top-1/2 right-4 transform -translate-y-1/2 p-3 bg-gray-800 text-white rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 ease-in-out hover:scale-110"
+                >
+                  &gt;
+                </button>
+              </>
             </picture>
           ))}
         </section>
-        {/* Larger box on the right */}
-        <LargeRightBox>
-          <Item>1</Item>
-          <Item>2</Item>
-          <Item>3</Item>
-          <Item>4</Item>
-          <Item>5</Item>
-          <Item>6</Item>
-          <Item>7</Item>
+        <LargeRightBox className="row-span-1 md:row-span-3 md:col-span-1">
+          {Object.keys(getImages).map((key) => (
+            <Item key={key}>
+              <Image
+                src={getImages[key].default.src}
+                // className="z-50"
+                alt={key}
+                // placeholder={"blur"}
+                fill
+              />
+            </Item>
+          ))}
+          {/* <Item>1</Item> */}
         </LargeRightBox>
       </header>
     </article>
@@ -102,92 +133,3 @@ const SwipeableCarousel = () => {
 };
 
 export default SwipeableCarousel;
-
-/**
- * 
- * "use client";
-"use client";
-import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
-import { useSwipeable } from "react-swipeable";
-
-const SwipeableCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const timeoutRef = useRef(null);
-
-  const items = [
-    "https://via.placeholder.com/800x400?text=Image+1",
-    "https://via.placeholder.com/800x400?text=Image+2",
-    "https://via.placeholder.com/800x400?text=Image+3",
-    "https://via.placeholder.com/800x400?text=Image+4",
-    "https://via.placeholder.com/800x400?text=Image+5",
-  ];
-
-  const resetTimeout = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  };
-
-  useEffect(() => {
-    resetTimeout();
-    timeoutRef.current = setTimeout(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-        setIsTransitioning(false);
-      }, 5000); // Duration of the transition
-    }, 2000);
-
-    return () => {
-      resetTimeout();
-    };
-  }, [currentIndex]);
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-        setIsTransitioning(false);
-      }, 300);
-    },
-    onSwipedRight: () => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex(
-          (prevIndex) => (prevIndex - 1 + items.length) % items.length
-        );
-        setIsTransitioning(false);
-      }, 300);
-    },
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-  });
-
-  return (
-    <div className="relative w-full h-64 overflow-hidden">
-      <div {...handlers} className="relative flex w-full h-full">
-        {items.map((item, index) => (
-          <Image
-            key={index}
-            src={item}
-            width={700}
-            height={500}
-            alt={`Slide ${index}`}
-            className={`absolute w-full h-full transition-opacity duration-700 ${
-              index === currentIndex ? "opacity-100" : "opacity-0"
-            }`}
-            style={{ transitionDuration: "700ms" }}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default SwipeableCarousel;
-
- * 
- */

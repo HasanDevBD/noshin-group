@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
             </header>
             <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
               <AppSideBar />
-              <main className="flex-1 bg-gray-300 overflow-hidden relative">
+              <main className="flex-1 bg-gray-300 overflow-hidden relative hover:overflow-y-auto">
                 {children}
               </main>
             </div>

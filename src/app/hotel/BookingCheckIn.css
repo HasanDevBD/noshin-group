@@ -1,0 +1,33 @@
+/* BookingCheckIn.css */
+.booking-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.calendar {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.calendar .react-calendar__tile--now {
+  background: #e2e8f0;
+}
+
+.calendar .react-calendar__tile--active {
+  background: #0072ff;
+  color: #ffffff;
+}
+
+.calendar .react-calendar__tile.bg-red-500 {
+  background: #f56565;
+  color: #ffffff;
+}
+
+.calendar .react-calendar__tile.cursor-not-allowed {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

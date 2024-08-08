@@ -83,7 +83,96 @@ body.dark-mode .main-content {
   background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
   color: #fff;
 }
+/* swipr siled start */
 
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.autoplay-progress {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--swiper-theme-color);
+}
+
+.autoplay-progress svg {
+  --progress: 0;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  stroke: var(--swiper-theme-color);
+  fill: none;
+  stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
+}
+.swiper-slide {
+  opacity: 0;
+  transition: opacity 5s ease;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+}
+
+/* swipr siled end */
+/* Ensure this CSS file is imported in your project */
+/* ProgressBar.css */
+/* ProgressBar.css */
+
+.progress-bar {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.progress-bar::-webkit-progress-bar {
+  background: linear-gradient(90deg, #f3f3f3 0%, #d9d9d9 100%);
+  border-radius: 12.5px;
+}
+
+.progress-bar::-webkit-progress-value {
+  background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+  border-radius: 12.5px;
+  transition: width 0.5s ease-in-out;
+}
+
+.progress-bar::-moz-progress-bar {
+  background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+  border-radius: 12.5px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Ensure this CSS file is imported in your project */
 .sliders {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -98,13 +187,32 @@ body.dark-mode .main-content {
   body {
     flex-direction: column;
   }
-
+  .swiper swiper-button-next {
+    display: none;
+  }
   .main-content {
     margin-left: 0;
     margin-bottom: 60px; /* same as sidebar height */
   }
 }
+/* wedding card start */
 
+@keyframes cardLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-cardLoad {
+  animation: cardLoad 1s ease-out forwards;
+}
+
+/* wedding card end */
 .ltmode {
   background-color: #f9fcff;
   color: #2d3436;

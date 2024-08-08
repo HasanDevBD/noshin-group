@@ -4,9 +4,8 @@ import { menus } from "@/data/menu_icons";
 import ItemList from "../ItemList";
 import React from "react";
 
-const Sidebar = ({ isToggled }) => {
+const Sidebar = () => {
   const [{ items }, { category }] = menus();
-  console.log({ isToggled });
 
   return (
     <section className="border-b-white top-1 flex-shrink-0">
@@ -38,7 +37,7 @@ const Sidebar = ({ isToggled }) => {
               {value.items.map((item) => (
                 <li key={item.id} className="category-item">
                   <ItemList
-                    Url={item.path}
+                    Url={item.url}
                     Name={item.name}
                     Icon={item.icon}
                     Index={item.id}
